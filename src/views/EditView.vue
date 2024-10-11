@@ -2,20 +2,33 @@
     <div v-if="paciente">
       <h1>Editar Paciente</h1>
       <form>
-        <div>
-          <label>Nombre</label>
-          <input v-model="paciente.nombre" type="text" />
-        </div>
-        <div>
-          <label>Apellido</label>
-          <input v-model="paciente.apellido" type="text" />
-        </div>
-        <div>
-          <label>Edad</label>
-          <input v-model="paciente.edad" type="number" />
-        </div>
+        <div class="input-group mb-3">
+                <label for="nombre" class="form-label">Nombre/s</label>
+                <input type="text" class="form-control" id="nombre" v-model="paciente.nombre">
+            </div>
+            <div class="input-group mb-3">
+                <label for="apellido" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="apellido" v-model="paciente.apellido">
+            </div>
+            <div class="input-group mb-3">
+                <label for="edad" class="form-label">Fecha de nacimiento</label>
+                <input type="text" class="form-control" aria-describedby="basic-addon2" id="edad"
+                    v-model="paciente.f_nacimiento">
+            </div>
+            <div class="row g-2">
+                <div class="col-sm">
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input id="usuario" type="text" class="form-control" aria-label="Cintura"
+                        v-model="paciente.usuario">
+                </div>
+                <div class="col-sm">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input id="password" type="password" class="form-control" aria-label="Cadera"
+                        v-model="paciente.password">
+                </div>
+            </div>
         <!-- Otros campos del paciente -->
-        <button @click="guardarCambios">Guardar Cambios</button>
+        <button class="btn btn-success" @click="guardarCambios">Guardar Cambios</button>
       </form>
     </div>
     <div v-else>
@@ -24,46 +37,13 @@
   </template>
   
   <script>
-  import axios from 'axios';
+  import { usePacienteStore } from '@/stores/pacienteStore';
   
   export default {
-    props: ['id_paciente'], // Recibimos el ID como prop
-    data() {
-      return {
-        paciente: {
-                id: '',
-                nombre: '',
-                apellido: '',
-                f_nacimiento: '',
-                usuario: '',
-                password: '',
-                state: '',
-            } // Aquí guardamos los detalles del paciente
-      };
-    },
-    created() {
-      this.obtenerPaciente();
-    },
-    methods: {
-      async obtenerPaciente() {
-        try {
-            console.log(this.id_paciente);
-            const response = await axios.get(`http://localhost:4000/api/v1/paciente/${this.id_paciente}`);
-            this.paciente = response.data;
-        } catch (error) {
-          console.error('Error al obtener los detalles del paciente:', error);
-        }
-      },
-      async guardarCambios() {
-        try {
-          await axios.put(`http://localhost:4000/api/v1/paciente/update`, this.paciente);
-          alert('Cambios guardados');
-          this.$router.push('/crud'); // Redirigir a la lista de pacientes después de guardar
-        } catch (error) {
-          console.error('Error al guardar los cambios:', error);
-        }
-      },
-    },
+    setup(){
+      const pacienteStore = usePacienteStore();
+      return { paciente : pacienteStore.paciente };
+    }
   };
   </script>
   

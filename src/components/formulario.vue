@@ -18,31 +18,6 @@
                     v-model="paciente.f_nacimiento">
             </div>
             <div>
-                <h2>MEDIDAS</h2>
-            </div>
-            <div class="row g-3">
-                <div class="col-sm">
-                    <input type="text" class="form-control" placeholder="Estatura (m)" aria-label="Estatura">
-                </div>
-                <div class="col-sm">
-                    <input type="text" class="form-control" placeholder="Peso (kg)" aria-label="Peso">
-                </div>
-                <div class="col-sm">
-                    <input type="text" class="form-control" placeholder="Pierna (cm)" aria-label="Pierna">
-                </div>
-            </div>
-            <div class="row g-3">
-                <div class="col-sm">
-                    <input type="text" class="form-control" placeholder="Cintura (cm)" aria-label="Cintura">
-                </div>
-                <div class="col-sm">
-                    <input type="text" class="form-control" placeholder="Cadera (cm)" aria-label="Cadera">
-                </div>
-                <div class="col-sm">
-                    <input type="text" class="form-control" placeholder="Brazo (cm)" aria-label="Brazo">
-                </div>
-            </div>
-            <div>
                 <h2>DATOS DE INICIO DE SESIÓN</h2>
             </div>
             <div class="row g-2">
@@ -58,12 +33,14 @@
                 </div>
             </div>
             <div>
-                <button class="btn btn-success">REGISTRAR</button>
+                <button class="btn btn-success" >REGISTRAR</button>
             </div>
         </form>
     </div>
 </template>
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
     name: 'formulario',
     data() {
@@ -82,10 +59,12 @@ export default {
     },
     methods: {
         saveData() {
+            const router = useRouter();
             this.axios.post("http://localhost:4000/api/v1/paciente/register", this.paciente)
                 .then(
                     ({ data }) => {
                         alert("SAVED");
+                        this.$router.push({name:'MedidasRegisterView'});
                         console.log(this.res.messsage);
                     }
                 )

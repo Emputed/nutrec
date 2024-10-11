@@ -3,7 +3,9 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import CrudView from '@/views/CrudView.vue'
 import EditView from '@/views/EditView.vue'
-
+import MedidasRegisterView from '@/views/MedidasRegisterView.vue'
+import MedidasView from '@/views/MedidasView.vue'
+import PlanView from '@/views/PlanView.vue'
 const routes = [
   {
     path: '/',
@@ -33,7 +35,25 @@ const routes = [
     name:'edit',
     component: EditView,
     props: true,
-  }
+  },
+  {
+    path: '/medida',
+    name:'MedidasRegisterView',
+    component: MedidasRegisterView,
+    props: true,
+  },
+  {
+    path: '/medidas',
+    name:'MedidasView',
+    component: MedidasView,
+    props: true,
+  },
+  {
+    path: '/plan',
+    name:'PlanView',
+    component: PlanView,
+    props: true,
+  },
 ]
 
 const router = createRouter({
