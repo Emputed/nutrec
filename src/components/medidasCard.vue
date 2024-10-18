@@ -24,21 +24,25 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-success">Nueva medida</button>
+        <button class="btn btn-success" @click="nuevaMedida()">Nueva medida</button>
     </div>
 </template>
 <script>
 import { useMedidasStore } from '@/stores/medidasStore';
-
+import { useRouter } from 'vue-router';
 export default {
     name: 'medidasCard',
     components: {
     },
     setup() {
+        const router = useRouter();
         const medidasStore = useMedidasStore();
 
-        
-        return { medidasStore };
+        const nuevaMedida = () =>{
+            router.push({name:'MedidasRegisterView'});
+        }
+
+        return { medidasStore, nuevaMedida };
     }
 }
 </script>

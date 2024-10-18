@@ -84,6 +84,7 @@ export default {
             try {
                 const response = await axios.get(`http://localhost:4000/api/v1/crud/medidas/${id_paciente}`);
                 medidasStore.setMedidas(response.data);
+                idStore.setId(id_paciente);
                 console.log(response);
                 router.push({ name: 'MedidasView' });
             } catch (error) {
@@ -94,6 +95,7 @@ export default {
         const planesPaciente = async (id_paciente) => {
             try {
                 const response = await axios.get(`http://localhost:4000/api/v1/crud/planes/${id_paciente}`);
+                idStore.setId(id_paciente);
                 planesStore.setPlanes(response.data);
                 console.log(response);
                 router.push({ name: 'PlanView' });
