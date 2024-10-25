@@ -6,6 +6,8 @@ import EditView from '@/views/EditView.vue'
 import MedidasRegisterView from '@/views/MedidasRegisterView.vue'
 import MedidasView from '@/views/MedidasView.vue'
 import PlanView from '@/views/PlanView.vue'
+import ChatView from '@/views/ChatView.vue'
+
 const routes = [
   {
     path: '/',
@@ -52,6 +54,12 @@ const routes = [
     path: '/plan',
     name:'PlanView',
     component: PlanView,
+    props: true,
+  },
+  {
+    path: '/chat',
+    name:'ChatView',
+    component: ChatView,
     props: true,
   },
 ]

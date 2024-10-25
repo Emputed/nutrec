@@ -58,6 +58,7 @@ export default {
           router.push({name:'crud'});
         }
         console.log("Login exitoso", data);
+        console.log(data.paciente.username);
       } catch (error) {
         console.error("Error en login", error);
       }

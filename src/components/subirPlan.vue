@@ -26,8 +26,6 @@ export default {
         console.error('No se seleccionó ningún archivo');
         return;
       }
-
-      
       const formData = new FormData();
       formData.append('file', file);
 
