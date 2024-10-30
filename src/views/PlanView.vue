@@ -1,5 +1,6 @@
 <template>
-    <subirPlan/>
+    <h2>PLANES DE ALIMENTACIÓN</h2>
+    <div><subirPlan/></div>
     <div>
         <mostrarPlan/>
     </div>
