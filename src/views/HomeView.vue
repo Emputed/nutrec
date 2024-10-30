@@ -3,12 +3,12 @@
     <div class="row align-items-stretch h-100">
       <h1>BIENVENIDO</h1>
       <div class="col-md-6 position-relative">
-        <h4 class="text-center">Imagen aleatoria de comida saludable</h4>
-        <img :src="imageURL" alt="Healthy Food" v-if="imageURL" class="img-fluid full-image" />
+        
+        <img :src="randomImage.url" alt="Healthy Food" v-if="randomImage" class="img-fluid full-image" />
         <p v-else>No se ha cargado ninguna imagen aún.</p>
       </div>
       <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-        <h2 class="text-center">Frase motivadora del día</h2>
+        
         <p v-if="randomPhrase">"{{ randomPhrase.text }}"</p>
         <small v-if="randomPhrase">— {{ randomPhrase.author }}</small>
         <p v-else>No se ha generado ninguna frase aún.</p>
@@ -48,11 +48,21 @@ export default {
         { text: "La primera riqueza es la salud.", author: "Ralph Waldo Emerson" },
         { text: "Comer bien es una forma de respeto hacia ti mismo.", author: "Desconocido" }
       ],
-      randomPhrase: null
+      randomPhrase: null,
+      images: [
+        { url: "../../public/platillo1.png"},
+        { url: "../../public/platillo2.png"},
+        { url: "../../public/platillo3.png"},
+        { url: "../../public/platillo4.png"},
+        { url: "../../public/platillo5.png"},
+        { url: "../../public/platillo6.png"},
+        { url: "../../public/platillo7.png"},
+      ],
+      randomImage: null,
     }
   },
   methods: {
-    async randomImage() {
+    /*async randomImage() {
       const apiKey = 'Il16Ei0dQHxh1uPeSnG2G9vBlS4ptamtc93QkZWk-0U';
       const query = 'healthy-food';
 
@@ -68,17 +78,22 @@ export default {
       } catch (error) {
         console.error('Error en el fetch: ' + error);
       }
-    }
-    ,
+    },*/
 
     generateRandomPhrase() {
       const randomIndex = Math.floor(Math.random() * this.frases.length);
       this.randomPhrase = this.frases[randomIndex];
       console.log(this.randomPhrase);
+    },
+
+    generateRandomImage() {
+      const randomIndex = Math.floor(Math.random() * this.images.length);
+      this.randomImage = this.images[randomIndex];
+      console.log(this.randomImage);
     }
   },
   mounted() {
-    this.randomImage();
+    this.generateRandomImage();
     this.generateRandomPhrase();
   }
 }

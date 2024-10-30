@@ -1,12 +1,7 @@
 <template>
   <navbar/>
-  <!--<nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/registro">Registro</router-link> |
-    <router-link to="/login">Login</router-link> |
-    <router-link to="/crud">CRUD</router-link>
-  </nav>-->
   <router-view/>
+  <footerComponent/>
 </template>
 
 <style>
@@ -34,10 +29,13 @@ nav a.router-link-exact-active {
 
 <script>
 import navbar from './components/navbar.vue';
+import footerComponent from './components/footerComponent.vue';
+import FooterComponent from './components/footerComponent.vue';
 export default{
   name: 'App',
   components:{
-    navbar
+    navbar,
+    footerComponent
   }
 }
 </script>
