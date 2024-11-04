@@ -38,12 +38,39 @@
   
   <script>
   import { usePacienteStore } from '@/stores/pacienteStore';
+  import axios from 'axios';
+  import { useRouter } from 'vue-router';
   
   export default {
-    setup(){
+    setup() {
       const pacienteStore = usePacienteStore();
-      return { paciente : pacienteStore.paciente };
+      const paciente = pacienteStore.paciente;  
+      const router = useRouter();
+      const guardarCambios = async () => {
+        try {
+          const payload = {
+            id_paciente: paciente.id_paciente,              
+            nombre: paciente.nombre,
+            apellido: paciente.apellido,
+            f_nacimiento: paciente.f_nacimiento,
+            usuario: paciente.usuario,
+            password: paciente.password,
+          };
+          console.log(payload);
+          const response = await axios.put('http://localhost:4000/api/v1/paciente/update', payload);
+          console.log('Actualización exitosa:', response.data);
+          router.push({name:'crud'});
+        } catch (error) {
+          console.log("Error en update ", error);
+        }
+      };
+      
+      return {
+        paciente,
+        guardarCambios,
+      };
     }
   };
   </script>
+  
   

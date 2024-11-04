@@ -62,7 +62,6 @@ export default {
             try {
                 // Asignar la fecha actual automáticamente
                 medida.fecha = new Date().toISOString();  // Convertir a formato ISO
-                console.log(medida)
                 const data = await axios.post(`http://localhost:4000/api/v1/medida/register/${idPaciente.idPaciente}`, medida);
                 alert("Registro de medida exitoso ");
                 router.push({name:'crud'});

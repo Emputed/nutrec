@@ -2,8 +2,11 @@
   <div class="container-fluid h-100">
     <div class="row align-items-stretch h-100">
       <h1>BIENVENIDO</h1>
+      <nav>
+        <router-link to="/plan_paciente">Planes de alimentacion</router-link> | 
+        <router-link to="/chat">Mensajes</router-link> |
+      </nav>
       <div class="col-md-6 position-relative">
-        
         <img :src="randomImage.url" alt="Healthy Food" v-if="randomImage" class="img-fluid full-image" />
         <p v-else>No se ha cargado ninguna imagen aún.</p>
       </div>
@@ -27,7 +30,7 @@
 <script>
 // @ is an alias to /src
 import navbar from '@/components/navbar.vue';
-import axios from 'axios';
+
 export default {
   name: 'HomeView',
   components: {
@@ -62,34 +65,14 @@ export default {
     }
   },
   methods: {
-    /*async randomImage() {
-      const apiKey = 'Il16Ei0dQHxh1uPeSnG2G9vBlS4ptamtc93QkZWk-0U';
-      const query = 'healthy-food';
-
-      try {
-        const response = await axios.get(`https://api.unsplash.com/photos/random`, {
-          params: {
-            query: query,
-            client_id: apiKey,
-          }
-        });
-        this.imageURL = response.data.urls.regular;  // Asignar directamente a 'imageURL'
-        console.log("Imagen cargada:", this.imageURL);
-      } catch (error) {
-        console.error('Error en el fetch: ' + error);
-      }
-    },*/
-
     generateRandomPhrase() {
       const randomIndex = Math.floor(Math.random() * this.frases.length);
       this.randomPhrase = this.frases[randomIndex];
-      console.log(this.randomPhrase);
     },
 
     generateRandomImage() {
       const randomIndex = Math.floor(Math.random() * this.images.length);
       this.randomImage = this.images[randomIndex];
-      console.log(this.randomImage);
     }
   },
   mounted() {

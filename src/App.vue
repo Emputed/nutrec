@@ -27,7 +27,7 @@ nav a {
 <script>
 import navbar from './components/navbar.vue';
 import footerComponent from './components/footerComponent.vue';
-import FooterComponent from './components/footerComponent.vue';
+
 export default{
   name: 'App',
   components:{

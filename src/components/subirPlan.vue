@@ -20,7 +20,6 @@ export default {
     const fileInput = ref(null);  // Referencia para el input de archivo
 
     const uploadFile = async () => {
-      
       const file = fileInput.value.files[0];
       if (!file) {
         console.error('No se seleccionó ningún archivo');
@@ -36,8 +35,10 @@ export default {
           },
         });
         console.log('Archivo subido con éxito:', response.data);
+        alert("Archivo subido con exito");
       } catch (error) {
         console.error('Error al subir el archivo:', error);
+        alert('Error al subir el archivo');
       }
     };
 
