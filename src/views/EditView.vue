@@ -38,7 +38,7 @@
   
   <script>
   import { usePacienteStore } from '@/stores/pacienteStore';
-  import axios from 'axios';
+  import api from '../axios.js';
   import { useRouter } from 'vue-router';
   
   export default {
@@ -57,7 +57,7 @@
             password: paciente.password,
           };
           console.log(payload);
-          const response = await axios.put('http://localhost:4000/api/v1/paciente/update', payload);
+          const response = await api.put('/paciente/update', payload);
           console.log('Actualización exitosa:', response.data);
           router.push({name:'crud'});
         } catch (error) {

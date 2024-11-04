@@ -35,7 +35,7 @@
     </form>
 </template>
 <script>
-import axios from 'axios';
+import api from '../axios.js';
 import { useRouter } from 'vue-router';
 import { useIdStore } from '@/stores/idStore';
 import { reactive } from 'vue';
@@ -62,7 +62,7 @@ export default {
             try {
                 // Asignar la fecha actual automáticamente
                 medida.fecha = new Date().toISOString();  // Convertir a formato ISO
-                const data = await axios.post(`http://localhost:4000/api/v1/medida/register/${idPaciente.idPaciente}`, medida);
+                const data = await api.post(`/medida/register/${idPaciente.idPaciente}`, medida);
                 alert("Registro de medida exitoso ");
                 router.push({name:'crud'});
             } catch (error) {

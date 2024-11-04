@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import api from '../axios.js';
 import { useAuthStore } from '@/stores/auth';
 import { ref, onMounted, computed } from 'vue';
 
@@ -38,7 +38,7 @@ export default {
         
         const getPlanes = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/v1/crud/planes/${id_paciente.value}`);
+                const response = await api.get(`/crud/planes/${id_paciente.value}`);
                 planes.value = response.data;
                 console.log("ID Paciente:", id_paciente.value);
                 console.log("Planes:", planes.value);
@@ -49,7 +49,7 @@ export default {
 
         const downloadPlan = async (id_plan) => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/v1/crud/download/${id_plan}`, {
+                const response = await api.get(`/crud/download/${id_plan}`, {
                     responseType: 'blob', // Indicamos que esperamos recibir datos binarios
                 });
 

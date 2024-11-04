@@ -10,7 +10,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import api from '../axios.js';
 import { useIdStore } from '@/stores/idStore'
 
 export default {
@@ -29,7 +29,7 @@ export default {
       formData.append('file', file);
 
       try {
-        const response = await axios.post(`http://localhost:4000/api/v1/plan/upload/${idStore.idPaciente}`, formData, {
+        const response = await api.post(`/plan/upload/${idStore.idPaciente}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

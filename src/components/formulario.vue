@@ -40,6 +40,7 @@
 </template>
 <script>
 import { useRouter } from 'vue-router';
+import api from "../axios.js"
 
 export default {
     name: 'formulario',
@@ -60,7 +61,7 @@ export default {
     methods: {
         saveData() {
             const router = useRouter();
-            this.axios.post("http://localhost:4000/api/v1/paciente/register", this.paciente)
+                api.post("/paciente/register", this.paciente)
                 .then(
                     ({ data }) => {
                         alert("SAVED");

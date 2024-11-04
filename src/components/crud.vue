@@ -33,7 +33,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import api from '../axios.js';
 import { useRouter } from 'vue-router'; // Importamos el router
 import { usePacienteStore } from '@/stores/pacienteStore.js';
 import { useMedidasStore } from '@/stores/medidasStore.js';
@@ -53,7 +53,7 @@ export default {
 
         const getPacientes = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/api/v1/crud/pacientes');
+                const response = await api.get('/crud/pacientes');
                 pacientes.value = response.data;
             } catch (error) {
                 console.error('Error en crud-getPacientes: ', error);
@@ -63,7 +63,7 @@ export default {
         const editarPaciente = async (id_paciente) => {
             // Redirigir a la vista de edición del paciente
             try {
-                const response = await axios.get(`http://localhost:4000/api/v1/crud/paciente/${id_paciente}`);
+                const response = await api.get(`/crud/paciente/${id_paciente}`);
                 pacienteStore.setPaciente({
                     id_paciente: response.data.id_paciente,
                     nombre: response.data.nombre,
@@ -82,7 +82,7 @@ export default {
 
         const medidasPaciente = async (id_paciente) => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/v1/crud/medidas/${id_paciente}`);
+                const response = await api.get(`/crud/medidas/${id_paciente}`);
                 medidasStore.setMedidas(response.data);
                 idStore.setId(id_paciente);
                 console.log(response);
@@ -94,7 +94,7 @@ export default {
 
         const planesPaciente = async (id_paciente) => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/v1/crud/planes/${id_paciente}`);
+                const response = await api.get(`/crud/planes/${id_paciente}`);
                 idStore.setId(id_paciente);
                 planesStore.setPlanes(response.data);
                 console.log(response);
