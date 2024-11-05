@@ -23,6 +23,7 @@
                     <button type="button" class="btn btn-success" @click="planesPaciente(paciente.id_paciente)">Subir
                         plan</button>
                     <button type="button" class="btn btn-danger">Eliminar</button>
+                    <button type="button" class="btn btn-danger"><router-link to="/chat">Mensajes</router-link></button>
                 </td>
             </tr>
         </tbody>
