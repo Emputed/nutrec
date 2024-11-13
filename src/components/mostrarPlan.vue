@@ -15,7 +15,7 @@
                     <td>{{ plan.id_plan }}</td>
                     <td>{{ plan.nombre_plan }}</td>
                     <td>{{ plan.fecha_plan }}</td>
-                    <td><button class="btn btn-success"> Descargar </button></td>
+                    <td><button class="btn btn-success" @click="eliminarPlan(plan.id_plan)"> Eliminar </button></td>
                 </tr>
             </tbody>
         </table>
@@ -23,12 +23,21 @@
 </template>
 <script>
 import { usePlanesStore } from '@/stores/planesStore';
-
+import api from '../axios.js'
 export default {
     name:'mostrarPlan',
     setup(){
         const planesStore = usePlanesStore();
-        return {planesStore};
+
+        const eliminarPlan = async (id_plan) => {
+            try{
+                const response = await api.delete(`plan/delete/${id_plan}`);
+                console.log(response.data);
+            }catch(error){
+                console.log(error);
+            }
+        }
+        return {planesStore, eliminarPlan};
     }
 }
 </script>

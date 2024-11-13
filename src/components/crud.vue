@@ -22,7 +22,7 @@
                         @click="medidasPaciente(paciente.id_paciente)">Medidas</button>
                     <button type="button" class="btn btn-success" @click="planesPaciente(paciente.id_paciente)">Subir
                         plan</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <button type="button" class="btn btn-danger" @click="eliminarPaciente(paciente.id_paciente)">Eliminar</button>
                     <button type="button" class="btn btn-danger"><router-link to="/chat">Mensajes</router-link></button>
                 </td>
             </tr>
@@ -103,13 +103,23 @@ export default {
             }catch(error){
                 console.log("Error en planesPaciente", error);
             }
+        };
+
+        const eliminarPaciente = async (id_paciente) => {
+            try{
+                const response = await api.delete(`paciente/delete/${id_paciente}`);
+                console.log(response.data);
+
+            }catch(error){
+                console.log("Error al querer eliminar al paciente");
+            }
         }
 
         onMounted(() => {
             getPacientes();
         });
 
-        return { pacientes, editarPaciente, medidasPaciente, planesPaciente };
+        return { pacientes, editarPaciente, medidasPaciente, planesPaciente, eliminarPaciente };
     },
 
     methods: {
