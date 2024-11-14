@@ -22,8 +22,9 @@
                         @click="medidasPaciente(paciente.id_paciente)">Medidas</button>
                     <button type="button" class="btn btn-success" @click="planesPaciente(paciente.id_paciente)">Subir
                         plan</button>
-                    <button type="button" class="btn btn-danger" @click="eliminarPaciente(paciente.id_paciente)">Eliminar</button>
-                    <button type="button" class="btn btn-danger"><router-link to="/chat">Mensajes</router-link></button>
+                    <button type="button" class="btn btn-danger"
+                        @click="eliminarPaciente(paciente.id_paciente)">Eliminar</button>
+                    <button type="button" class="btn btn-dark"><router-link to="/chat"> Mensajes </router-link></button>
                 </td>
             </tr>
         </tbody>
@@ -40,6 +41,7 @@ import { usePacienteStore } from '@/stores/pacienteStore.js';
 import { useMedidasStore } from '@/stores/medidasStore.js';
 import { useIdStore } from '@/stores/idStore';
 import { usePlanesStore } from '@/stores/planesStore';
+import Swal from 'sweetalert2';
 
 export default {
     name: 'crud',
@@ -100,18 +102,34 @@ export default {
                 planesStore.setPlanes(response.data);
                 console.log(response);
                 router.push({ name: 'PlanView' });
-            }catch(error){
+            } catch (error) {
                 console.log("Error en planesPaciente", error);
             }
         };
 
         const eliminarPaciente = async (id_paciente) => {
-            try{
-                const response = await api.delete(`paciente/delete/${id_paciente}`);
-                console.log(response.data);
-
-            }catch(error){
+            try {
+                const result = await Swal.fire({
+                    title: 'Eliminar paciente',
+                    text: '¿Esta seguro de eliminar este paciente?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Eliminar',
+                    cancelButtonText: 'Cancelar',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'btn btn-danger',
+                        cancelButton: 'btn btn-secondary'
+                    }
+                });
+                if(result.isConfirmed){
+                    const response = await api.delete(`paciente/delete/${id_paciente}`);
+                    console.log(response.data);
+                    Swal.fire('¡Eliminado!', 'El paciente ha sido eliminado con éxito.', 'success');
+                }
+            } catch (error) {
                 console.log("Error al querer eliminar al paciente");
+                Swal.fire('Error', 'Hubo un problema al intentar eliminar al paciente.', 'error');
             }
         }
 

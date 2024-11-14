@@ -41,6 +41,7 @@
 <script>
 import { useRouter } from 'vue-router';
 import api from "../axios.js"
+import Swal from 'sweetalert2';
 
 export default {
     name: 'formulario',
@@ -64,8 +65,8 @@ export default {
                 api.post("/paciente/register", this.paciente)
                 .then(
                     ({ data }) => {
-                        alert("SAVED");
-                        this.$router.push({name:'MedidasRegisterView'});
+                        Swal.fire('¡Registrado!', 'El paciente ha sido registrado con éxito.', 'success');
+                        this.$router.push({name:'crud'});
                         console.log(this.res.messsage);
                     }
                 )

@@ -63,10 +63,10 @@ export default {
                 // Asignar la fecha actual automáticamente
                 medida.fecha = new Date().toISOString();  // Convertir a formato ISO
                 const data = await api.post(`/medida/register/${idPaciente.idPaciente}`, medida);
-                alert("Registro de medida exitoso ");
+                Swal.fire('¡Registrado!', 'La medida se ha sido registrado con éxito.', 'success');
                 router.push({name:'crud'});
             } catch (error) {
-                alert("Error con la medida");
+                Swal.fire('Error', 'Hubo un problema al intentar registrar la medida.', 'error');
                 console.log(error);
             }
 

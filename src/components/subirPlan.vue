@@ -35,10 +35,10 @@ export default {
           },
         });
         console.log('Archivo subido con éxito:', response.data);
-        alert("Archivo subido con exito");
+        Swal.fire('¡Registrado!', 'El archivo se subó con éxito.', 'success');
       } catch (error) {
         console.error('Error al subir el archivo:', error);
-        alert('Error al subir el archivo');
+        Swal.fire('Error', 'Hubo un problema al subir el archivo.', 'error');
       }
     };
 
