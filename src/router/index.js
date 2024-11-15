@@ -8,6 +8,7 @@ import MedidasView from "@/views/MedidasView.vue";
 import PlanView from "@/views/PlanView.vue";
 import ChatView from "@/views/ChatView.vue";
 import PlanPacienteView from "@/views/PlanPacienteView.vue";
+import { useAuthStore } from "@/stores/auth";
 
 const routes = [
   {
@@ -33,6 +34,15 @@ const routes = [
     path: "/crud",
     name: "crud",
     component: CrudView,
+    beforeEnter: (to, from, next) => {
+      const store = useAuthStore();
+      const status = store.status;
+      if(status === 1){
+        next();
+      }else{
+        next('/');
+      }
+    }
   },
   {
     path: "/edit",
@@ -75,6 +85,25 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const store = useAuthStore();
+
+  // Verificar si el usuario está autenticado
+  if (store.flag) {
+    // Si está autenticado, permitir la navegación
+    next();
+  } else {
+    // Si no está autenticado y trata de acceder a una ruta protegida
+    if (to.path !== '/') {
+      // Redirigir a la página de inicio de sesión
+      next('/');
+    } else {
+      // Permitir acceso a la página de inicio de sesión
+      next();
+    }
+  }
 });
 
 export default router;

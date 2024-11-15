@@ -2,10 +2,11 @@
   <div class="container-fluid h-100">
     <div class="row align-items-stretch h-100">
       <h1>BIENVENIDO</h1>
-      <nav>
-        <router-link to="/plan_paciente">Planes de alimentacion</router-link> | 
-        <router-link to="/chat">Mensajes</router-link> |
-      </nav>
+        <nav>
+          <router-link to="/plan_paciente">Planes de alimentacion</router-link> | 
+          <router-link to="/chat">Mensajes</router-link> |
+        </nav>
+        
       <div class="col-md-6 position-relative">
         <img :src="randomImage.url" alt="Healthy Food" v-if="randomImage" class="img-fluid full-image" />
         <p v-else>No se ha cargado ninguna imagen aún.</p>
