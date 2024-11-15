@@ -14,13 +14,13 @@
             </div>
             <div class="input-group mb-3">
                 <label for="edad" class="form-label">Fecha de nacimiento</label>
-                <input type="text" class="form-control" aria-describedby="basic-addon2" id="edad"
+                <input type="text" class="form-control" placeholder="YYYY-MM-DD" aria-describedby="basic-addon2" id="edad"
                     v-model="paciente.f_nacimiento">
             </div>
             <div>
                 <h2>DATOS DE INICIO DE SESIÓN</h2>
             </div>
-            <div class="row g-2">
+            <div class="row g-2 m-3">
                 <div class="col-sm">
                     <label for="usuario" class="form-label">Usuario</label>
                     <input id="usuario" type="text" class="form-control" aria-label="Cintura"
@@ -32,7 +32,7 @@
                         v-model="paciente.password">
                 </div>
             </div>
-            <div>
+            <div class="container mb-3">
                 <button class="btn btn-success" >REGISTRAR</button>
             </div>
         </form>

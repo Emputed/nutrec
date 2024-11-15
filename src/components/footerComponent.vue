@@ -43,13 +43,4 @@ export default {
     background-color: #70AE6E;
     /* Fondo con el color personalizado */
 }
-
-.social-icons a {
-    font-size: 1.5rem;
-}
-
-.social-icons a:hover {
-    color: #444;
-    /* Cambia a un color oscuro al pasar el mouse */
-}
 </style>

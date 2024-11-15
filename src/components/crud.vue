@@ -1,4 +1,5 @@
 <template>
+    <h3 class="m-3">PANEL DE CONTROL</h3>
     <table class="table">
         <thead>
             <tr>
@@ -29,7 +30,7 @@
             </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-success" @click="registrarPaciente">Registrar paciente</button>
+    <button type="button" class="btn btn-success mb-3" @click="registrarPaciente">Registrar paciente</button>
 
 </template>
 

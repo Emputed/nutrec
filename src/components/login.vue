@@ -25,7 +25,7 @@
 
                         <div class="text-center justify-content-center text-lg-start mt-4 pt-2">
                             <button data-mdb-button-init data-mdb-ripple-init
-                                class="btn btn-primary btn-lg"
+                                class="btn btn-success btn-lg"
                                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Ingresar</button>
                         </div>
                     </form>
