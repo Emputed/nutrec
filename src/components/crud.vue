@@ -25,7 +25,8 @@
                         plan</button>
                     <button type="button" class="btn btn-danger"
                         @click="eliminarPaciente(paciente.id_paciente)">Eliminar</button>
-                    <button type="button" class="btn btn-dark"><router-link to="/chat"> Mensajes </router-link></button>
+                    <button type="button" class="btn btn-warning"
+                        @click="mensajePaciente(paciente.id_paciente)">Chat</button>
                 </td>
             </tr>
         </tbody>
@@ -68,15 +69,15 @@ export default {
             // Redirigir a la vista de edición del paciente
             try {
                 const response = await api.get(`/crud/paciente/${id_paciente}`);
-                pacienteStore.setPaciente({
-                    id_paciente: response.data.id_paciente,
-                    nombre: response.data.nombre,
-                    apellido: response.data.apellido,
-                    f_nacimiento: response.data.f_nacimiento,
-                    usuario: response.data.usuario,
-                    password: response.data.password,
-                    estatus: response.data.estatus
-                });
+                const data = response.data;
+
+                pacienteStore.setId_paciente(data.id_paciente);
+                pacienteStore.setNombre(data.nombre);
+                pacienteStore.setApellido(data.apellido);
+                pacienteStore.setNacimiento(data.f_nacimiento);
+                pacienteStore.setUsuario(data.usuario);
+                pacienteStore.setPassword(data.password);
+
                 console.log(response);
                 router.push({ name: 'edit' });
             } catch (error) {
@@ -123,7 +124,7 @@ export default {
                         cancelButton: 'btn btn-secondary'
                     }
                 });
-                if(result.isConfirmed){
+                if (result.isConfirmed) {
                     const response = await api.delete(`paciente/delete/${id_paciente}`);
                     console.log(response.data);
                     Swal.fire('¡Eliminado!', 'El paciente ha sido eliminado con éxito.', 'success');
@@ -134,11 +135,17 @@ export default {
             }
         }
 
+        const mensajePaciente = (id_paciente) => {
+            idStore.setId(id_paciente);
+            console.log(idStore.idPaciente);
+            router.push({ name: 'ChatView' });
+        }
+
         onMounted(() => {
             getPacientes();
         });
 
-        return { pacientes, editarPaciente, medidasPaciente, planesPaciente, eliminarPaciente };
+        return { pacientes, editarPaciente, medidasPaciente, planesPaciente, eliminarPaciente, mensajePaciente };
     },
 
     methods: {

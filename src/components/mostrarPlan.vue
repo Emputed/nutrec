@@ -33,8 +33,8 @@ export default {
         const eliminarPlan = async (id_plan) => {
             try {
                 const result = await Swal.fire({
-                    title: 'Eliminar paciente',
-                    text: '¿Esta seguro de eliminar este paciente?',
+                    title: 'Eliminar plan de alimentación',
+                    text: '¿Esta seguro de eliminar este archivo?',
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonText: 'Eliminar',

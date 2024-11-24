@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="vh-100">
+        <h2>MEDIDAS</h2>
         <table class="table">
             <thead>
                 <tr>

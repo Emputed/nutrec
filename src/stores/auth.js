@@ -6,9 +6,10 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: localStorage.getItem('token') || null,
     username: localStorage.getItem('username') || null, 
-    status : localStorage.getItem('status') || null,
+    status : parseInt(localStorage.getItem('status')) || null,
     id : localStorage.getItem('id') || null,
     flag: localStorage.getItem('flag') === "true" ? true : false,
+    role: localStorage.getItem('role') || null,
   }),
   actions: {
     async login(credentials) {
@@ -19,7 +20,11 @@ export const useAuthStore = defineStore('auth', {
         this.setStatus(response.data.paciente.status);
         this.setId(response.data.paciente.id);
         this.setFlag(true);
-        console.log(this.flag)
+        if (this.status === 1) {
+          this.setRole("nutriologa");
+        } else {
+          this.setRole("paciente");
+        }
         return response.data;
       } catch (error) {
         console.error("Error en login:", error);
@@ -46,6 +51,10 @@ export const useAuthStore = defineStore('auth', {
       this.flag = flag;
       localStorage.setItem('flag', flag);
     },
+    setRole(role){
+      this.role = role;
+      localStorage.setItem('role', role);
+    },
     logout() {
       this.id = null;
       this.token = null;
@@ -55,7 +64,7 @@ export const useAuthStore = defineStore('auth', {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
       localStorage.removeItem('flag');
-      console.log(this.flag);
+      localStorage.removeItem('role');
     },
   },
 });

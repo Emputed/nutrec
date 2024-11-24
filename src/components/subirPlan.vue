@@ -12,6 +12,7 @@
 import { ref } from 'vue';
 import api from '../axios.js';
 import { useIdStore } from '@/stores/idStore'
+import Swal from 'sweetalert2';
 
 export default {
   name: 'SubirPlan',
@@ -35,7 +36,7 @@ export default {
           },
         });
         console.log('Archivo subido con éxito:', response.data);
-        Swal.fire('¡Registrado!', 'El archivo se subó con éxito.', 'success');
+        Swal.fire('¡Registrado!', 'El archivo se subió con éxito.', 'success');
       } catch (error) {
         console.error('Error al subir el archivo:', error);
         Swal.fire('Error', 'Hubo un problema al subir el archivo.', 'error');

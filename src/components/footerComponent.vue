@@ -1,22 +1,26 @@
 <template>
     <footer class="custom-footer text-white py-4">
+      <div class="container"> <!-- Agrega un contenedor para evitar desbordamientos -->
         <div class="row align-items-center">
-            <div class="col container text-center">
+          <!-- Primera columna -->
+          <div class="col-12 col-md-6 text-center mb-3 mb-md-0">
             <h5>{{ consultorioEcatepec.clinicName }}</h5>
-            <p>{{  consultorioEcatepec.clinicAddress }}</p>
-            <p>{{  consultorioEcatepec.clinicCity }}</p>
-            
-        </div>
-        <div class="col container text-center">
+            <p>{{ consultorioEcatepec.clinicAddress }}</p>
+            <p>{{ consultorioEcatepec.clinicCity }}</p>
+          </div>
+          <!-- Segunda columna -->
+          <div class="col-12 col-md-6 text-center">
             <h5>{{ consultorioGAM.clinicName }}</h5>
-            <p>{{  consultorioGAM.clinicAddress }}</p>
-            <p>{{  consultorioGAM.clinicCity }}</p>
+            <p>{{ consultorioGAM.clinicAddress }}</p>
+            <p>{{ consultorioGAM.clinicCity }}</p>
+          </div>
         </div>
+        <div class="text-center mt-3">
+          <small>&copy; 2024 PlanifyWell. Todos los derechos reservados.</small>
         </div>
-        
-        <small>&copy; 2024 PlanifyWell. Todos los derechos reservados.</small>
+      </div>
     </footer>
-</template>
+  </template>
 
 <script>
 export default {

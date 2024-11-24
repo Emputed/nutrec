@@ -13,13 +13,13 @@
 
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4 my-4">
-                            <input type="text" id="form3Example3" v-model="credentials.usuario" class="form-control form-control-lg" />
+                            <input type="text" id="form3Example3" v-model="credentials.usuario" class="form-control form-control-lg" required/>
                             <label class="form-label" for="form3Example3">Usuario</label>
                         </div>
 
                         <!-- Password input -->
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="password" id="form3Example4" v-model="credentials.password" class="form-control form-control-lg" />
+                            <input type="password" id="form3Example4" v-model="credentials.password" class="form-control form-control-lg" required/>
                             <label class="form-label" for="form3Example4">Contraseña</label>
                         </div>
 
@@ -57,7 +57,6 @@ export default {
         else{
           router.push({name:'crud'});
         }
-        console.log("Login exitoso", data);
         console.log(data.paciente.username);
       } catch (error) {
         console.error("Error en login", error);

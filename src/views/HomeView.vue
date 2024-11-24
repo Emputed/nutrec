@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid h-100">
-    <div class="row align-items-stretch h-100">
-      <h1>BIENVENIDO</h1>
+  <div class="h-80">
+    <div class="row align-items-stretch h-80">
+      <h3>BIENVENIDO</h3>
         <nav>
           <router-link to="/plan_paciente">Planes de alimentacion</router-link> | 
           <router-link to="/chat">Mensajes</router-link> |
@@ -19,11 +19,38 @@
       </div>
     </div>
 <br>
-    <div>
+    <div class="container">
       <h2>PREGUNTAS FRECUENTES</h2>
+
       <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, quisquam nostrum commodi magni eum laboriosam. Quasi maiores nesciunt earum numquam harum quos, odio est architecto expedita, aperiam aliquam hic sit!
+        <h4>¿Cuántas comidas al día debo hacer?</h4>
+        <div>
+          La cantidad de comidas al día puede variar según las necesidades individuales, pero generalmente se recomienda hacer de 3 a 5 comidas al día. Esto puede incluir tres comidas principales (desayuno, comida y cena) y dos colaciones saludables entre comidas.
+        </div>
       </div>
+
+      <div>
+        <h4>¿Qué debo comer para mantener una dieta balanceada?</h4>
+        <div>
+          Una dieta balanceada incluye una variedad de alimentos de todos los grupos: frutas, verduras, proteínas magras, granos integrales y lácteos bajos en grasa. Es importante comer porciones adecuadas y limitar el consumo de alimentos procesados, azúcares añadidos y grasas saturadas.
+        </div>
+      </div>
+
+      <div>
+        <h4>¿Qué alimentos son buenos para aumentar mi energía?</h4>
+        <div>
+          Los alimentos ricos en carbohidratos complejos, como granos integrales, frutas y verduras, son excelentes para aumentar la energía.
+        </div>
+      </div>
+
+      <div>
+        <h4>¿Si bajo de peso solo bajo grasa?</h4>
+        <div>
+          Cuando se baja de peso, depende mucho de la dieta o los factores por los que sea provocada esa perdida de peso, 
+          porque se puede perder grasa pero al mismo tiempo masa muscular cuando el proceso no se lleva con una dieta balanceada.
+        </div>
+      </div>
+      
     </div>
   </div>
 </template>

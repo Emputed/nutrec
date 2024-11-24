@@ -87,23 +87,35 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const store = useAuthStore();
-
-  // Verificar si el usuario está autenticado
-  if (store.flag) {
-    // Si está autenticado, permitir la navegación
-    next();
-  } else {
-    // Si no está autenticado y trata de acceder a una ruta protegida
+  // Si no hay token, redirige a la página de inicio de sesión
+  if (!store.token) {
     if (to.path !== '/') {
-      // Redirigir a la página de inicio de sesión
-      next('/');
-    } else {
-      // Permitir acceso a la página de inicio de sesión
-      next();
+      return next('/');
+    }
+    return next();
+  }
+  // Verifica la validez del token si no está autenticado
+  if (!store.flag) {
+    try {
+      await api.get('paciente/verify-token', {
+        headers: { Authorization: `Bearer ${store.token}` },
+      });
+      store.setFlag(true); // Si el token es válido, establece flag
+    } catch (error) {
+      console.error("Token inválido o expirado:", error);
+      store.logout();
+      if (to.path !== '/') {
+        return next('/');
+      }
+      return next();
     }
   }
+
+  // Permite la navegación si el usuario está autenticado
+  next();
 });
+
 
 export default router;
