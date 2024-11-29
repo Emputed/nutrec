@@ -53,9 +53,7 @@ export default {
     const idStore = useIdStore();
     let user = ref([]);
     console.log(user);
-    const socket = io("https://express-nutrec.onrender.com", {
-      transports:["websocket"]
-    });
+    const socket = io("https://express-nutrec.onrender.com");
     const messages = ref([]);
     const newMessage = ref("");
     const paciente = ref({});
