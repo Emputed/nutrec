@@ -53,7 +53,7 @@ export default {
     const idStore = useIdStore();
     let user = ref([]);
     console.log(user);
-    const socket = io("http://localhost:4000/");
+    const socket = io("https://nice-glacier-0e793e60f.5.azurestaticapps.net");
     const messages = ref([]);
     const newMessage = ref("");
     const paciente = ref({});
