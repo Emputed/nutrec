@@ -53,7 +53,9 @@ export default {
     const idStore = useIdStore();
     let user = ref([]);
     console.log(user);
-    const socket = io("https://nice-glacier-0e793e60f.5.azurestaticapps.net");
+    const socket = io("https://express-nutrec.onrender.com", {
+      transports:["websocket"]
+    });
     const messages = ref([]);
     const newMessage = ref("");
     const paciente = ref({});
