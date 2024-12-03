@@ -35,8 +35,8 @@ const routes = [
     name: "crud",
     component: CrudView,
     beforeEnter: (to, from, next) => {
-      const store = useAuthStore();
-      const status = store.status;
+      let store = useAuthStore();
+      let status = store.status;
       if(status === 1){
         next();
       }else{
