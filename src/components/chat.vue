@@ -113,11 +113,11 @@ export default {
         console.error("Error al guardar el mensaje:", err);
       });
 
-      // Añadir el mensaje localmente
+     /* // Añadir el mensaje localmente
       messages.value.push({
         ...messageData,
         timestamp: new Date().toISOString(),
-      });
+      }); */
 
       newMessage.value = "";
     };
