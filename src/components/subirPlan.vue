@@ -13,12 +13,14 @@ import { ref } from 'vue';
 import api from '../axios.js';
 import { useIdStore } from '@/stores/idStore'
 import Swal from 'sweetalert2';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'SubirPlan',
   setup() {
     const idStore = useIdStore(); 
     const fileInput = ref(null);  // Referencia para el input de archivo
+    const router = useRouter();
 
     const uploadFile = async () => {
       const file = fileInput.value.files[0];
@@ -36,7 +38,8 @@ export default {
           },
         });
         console.log('Archivo subido con éxito:', response.data);
-        Swal.fire('¡Registrado!', 'El archivo se subió con éxito.', 'success');
+        Swal.fire('¡Listo!', 'El archivo se subió con éxito.', 'success');
+        router.push({name:'crud'});
       } catch (error) {
         console.error('Error al subir el archivo:', error);
         Swal.fire('Error', 'Hubo un problema al subir el archivo.', 'error');

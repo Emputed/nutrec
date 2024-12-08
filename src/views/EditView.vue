@@ -55,7 +55,7 @@
           console.log("PAYLOAD: ",payload);
           const response = await api.put('/paciente/update', payload);
           console.log('Actualización exitosa:', response.data);
-          router.push({name:'crud'});
+          router.push('/crud');
         } catch (error) {
           console.log("Error en update ", error);
         }

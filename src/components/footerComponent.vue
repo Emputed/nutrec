@@ -1,6 +1,6 @@
 <template>
     <footer class="custom-footer text-white py-4">
-      <div class="container"> <!-- Agrega un contenedor para evitar desbordamientos -->
+      <div class="container">
         <div class="row align-items-center">
           <!-- Primera columna -->
           <div class="col-12 col-md-6 text-center mb-3 mb-md-0">
@@ -30,11 +30,11 @@ export default {
             consultorioEcatepec: {
                 clinicName: "Consultorio de Nutrición Nutrec ECATEPEC",
                 clinicAddress: "Av. Mexico 222",
-                clinicCity: "Tulpetlac , Ecatepec de Morelos"
+                clinicCity: "Tulpetlac, Ecatepec de Morelos"
             },
             consultorioGAM: {
                 clinicName: "Consultorio de Nutrición Nutrec GAM",
-                clinicAddress: "AV. 412 #272, San Juan de Aragón VI Sección",
+                clinicAddress: "Av. 412 #272, San Juan de Aragón VI Sección",
                 clinicCity: "Gustavo A. Madero, Ciudad de México"
             }
         };
