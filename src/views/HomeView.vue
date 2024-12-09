@@ -4,7 +4,7 @@
       <h3>BIENVENIDO</h3>
       <nav>
         <router-link to="/plan_paciente">Planes de alimentacion</router-link> |
-        <router-link to="/chat">Mensajes</router-link> |
+        <router-link to="/chat">Mensajes</router-link> 
       </nav>
 
       <div class="col-md-6 position-relative">
