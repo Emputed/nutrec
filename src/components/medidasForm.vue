@@ -3,7 +3,7 @@
         <div>
             <h2>MEDIDAS</h2>
         </div>
-        <form @submit.prevent="saveMedidas" class="m-5 ">
+        <form @submit.prevent="saveMedidas" class="m-5">
             <div class="container">
                 <div class="row g-3">
                     <div class="col-sm m-2">

@@ -19,39 +19,64 @@
       </div>
     </div>
 <br>
-    <div class="container">
-      <h2>PREGUNTAS FRECUENTES</h2>
+<div class="container my-5">
+  <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
 
-      <div>
-        <h4>¿Cuántas comidas al día debo hacer?</h4>
-        <div>
+  <div class="accordion" id="faqAccordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          ¿Cuántas comidas al día debo hacer?
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
           La cantidad de comidas al día puede variar según las necesidades individuales, pero generalmente se recomienda hacer de 3 a 5 comidas al día. Esto puede incluir tres comidas principales (desayuno, comida y cena) y dos colaciones saludables entre comidas.
         </div>
       </div>
+    </div>
 
-      <div>
-        <h4>¿Qué debo comer para mantener una dieta balanceada?</h4>
-        <div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          ¿Qué debo comer para mantener una dieta balanceada?
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
           Una dieta balanceada incluye una variedad de alimentos de todos los grupos: frutas, verduras, proteínas magras, granos integrales y lácteos bajos en grasa. Es importante comer porciones adecuadas y limitar el consumo de alimentos procesados, azúcares añadidos y grasas saturadas.
         </div>
       </div>
+    </div>
 
-      <div>
-        <h4>¿Qué alimentos son buenos para aumentar mi energía?</h4>
-        <div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          ¿Qué alimentos son buenos para aumentar mi energía?
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
           Los alimentos ricos en carbohidratos complejos, como granos integrales, frutas y verduras, son excelentes para aumentar la energía.
         </div>
       </div>
+    </div>
 
-      <div>
-        <h4>¿Si bajo de peso solo bajo grasa?</h4>
-        <div>
-          Cuando se baja de peso, depende mucho de la dieta o los factores por los que sea provocada esa perdida de peso, 
-          porque se puede perder grasa pero al mismo tiempo masa muscular cuando el proceso no se lleva con una dieta balanceada.
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          ¿Si bajo de peso solo bajo grasa?
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">
+          Cuando se baja de peso, depende mucho de la dieta o los factores por los que sea provocada esa perdida de peso, porque se puede perder grasa pero al mismo tiempo masa muscular cuando el proceso no se lleva con una dieta balanceada.
         </div>
       </div>
-      
     </div>
+  </div>
+</div>
+
   </div>
 </template>
 
