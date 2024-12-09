@@ -42,9 +42,12 @@ export default {
 }
 </script>
 
-<style>
-.custom-footer {
-    background-color: #70AE6E;
-    /* Fondo con el color personalizado */
+<style scoped>
+footer {
+  background-color: #70AE6E;
+  color: #fff;
+  padding: 20px;
+  margin-top: auto;
+  width: 100%;
 }
 </style>
