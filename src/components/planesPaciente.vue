@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="vh-100">
         <h3>Estos son tus planes, <strong>{{ username }}</strong></h3>
         <table class="table">
             <thead>

@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-container d-flex flex-column justify-content-between h-100">
+  <div class="chat-container d-flex flex-column justify-content-between h-100 vh-100">
     <div class="chat-header bg-primary text-white py-2 px-3">
       <h5 class="mb-0">
         Chat con {{ paciente?.nombre || "Mtra. Sara Marín - NUTREC" }}

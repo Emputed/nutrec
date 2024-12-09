@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="vh-100">
         <div>
             <h2>DATOS GENERALES</h2>
         </div>

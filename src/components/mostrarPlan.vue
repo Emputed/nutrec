@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="vh-100">
         <table class="table">
             <thead>
                 <tr>
