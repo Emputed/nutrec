@@ -13,15 +13,6 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
 </style>
 
 <script>
@@ -36,3 +27,12 @@ export default{
   }
 }
 </script>
+
+<style scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #effffb;
+}
+</style>
