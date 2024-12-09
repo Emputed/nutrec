@@ -1,39 +1,42 @@
 <template>
-    <section class="vh-100">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="../../public/PlanifyWell_logo.svg" class="img-fluid" alt="Sample image">
-                </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form @submit.prevent="login">
-                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-normal mb-0 me-3">Iniciar Sesión</p>
-                        </div>
-
-                        <!-- Email input -->
-                        <div data-mdb-input-init class="form-outline mb-4 my-4">
-                            <input type="text" id="form3Example3" v-model="credentials.usuario" class="form-control form-control-lg" required/>
-                            <label class="form-label" for="form3Example3">Usuario</label>
-                        </div>
-
-                        <!-- Password input -->
-                        <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="password" id="form3Example4" v-model="credentials.password" class="form-control form-control-lg" required/>
-                            <label class="form-label" for="form3Example4">Contraseña</label>
-                        </div>
-
-                        <div class="text-center justify-content-center text-lg-start mt-4 pt-2">
-                            <button data-mdb-button-init data-mdb-ripple-init
-                                class="btn btn-success btn-lg"
-                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Ingresar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <section class="d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center align-items-center">
+        <!-- Imagen -->
+        <div class="col-md-9 col-lg-6 col-xl-5 text-center mb-4">
+          <img src="../../public/PlanifyWell_logo.svg" class="img-fluid" alt="Logo">
         </div>
-    </section>
+
+        <!-- Formulario -->
+        <div class="col-md-8 col-lg-6 col-xl-4">
+          <div class="card shadow-lg p-4">
+            <form @submit.prevent="login">
+              <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+              <!-- Input Usuario -->
+              <div class="form-outline mb-4">
+                <input type="text" id="form3Example3" v-model="credentials.usuario" class="form-control form-control-lg" required />
+                <label class="form-label" for="form3Example3">Usuario</label>
+              </div>
+
+              <!-- Input Contraseña -->
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example4" v-model="credentials.password" class="form-control form-control-lg" required />
+                <label class="form-label" for="form3Example4">Contraseña</label>
+              </div>
+
+              <!-- Botón Ingresar -->
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success btn-lg px-5">Ingresar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
+
 <script>
 import router from '@/router';
 import { useAuthStore } from '@/stores/auth';

@@ -1,6 +1,5 @@
 <template>
     <h3 class="m-3">PANEL DE CONTROL</h3>
-    
     <!-- Buscador -->
     <div class="container mb-3">
       <input
@@ -10,7 +9,6 @@
         placeholder="Buscar por nombre..."
       />
     </div>
-  
     <!-- Tabla -->
     <table class="table">
       <thead>
