@@ -8,25 +8,25 @@
                 <div class="row g-3">
                     <div class="col-sm m-2">
                         <input type="text" class="form-control" v-model="medida.estatura" placeholder="Estatura (m)"
-                            aria-label="Estatura">
+                            aria-label="Estatura" required>
                     </div>
                     <div class="col-sm m-2">
                         <input type="text" class="form-control" v-model="medida.m_peso" placeholder="Peso (kg)"
-                            aria-label="Peso">
+                            aria-label="Peso" required>
                     </div>
                     <div class="col-sm m-2">
                         <input type="text" class="form-control" v-model="medida.m_pierna" placeholder="Pierna (cm)"
-                            aria-label="Pierna">
+                            aria-label="Pierna" required>
                     </div>
                 </div>
                 <div class="row g-3 m-2">
                     <div class="col-sm">
                         <input type="text" class="form-control" v-model="medida.m_cintura" placeholder="Cintura (cm)"
-                            aria-label="Cintura">
+                            aria-label="Cintura" required>
                     </div>
                     <div class="col-sm ">
                         <input type="text" class="form-control" v-model="medida.m_brazo" placeholder="Brazo (cm)"
-                            aria-label="Brazo">
+                            aria-label="Brazo" required>
                     </div>
                 </div>
             </div>
