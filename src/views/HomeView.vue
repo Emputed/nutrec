@@ -1,79 +1,84 @@
 <template>
-  <div class="h-80">
-    <div class="row align-items-stretch h-80">
-      <h3>BIENVENIDO</h3>
-      <nav>
-        <router-link to="/plan_paciente">Planes de alimentacion</router-link> |
-        <router-link to="/chat">Mensajes</router-link> 
-      </nav>
+  <div class="h-80 overflow-hidden">
+    <div class="container">
+      <div class="row align-items-stretch h-80">
+        <h3 class="text-center mb-4">BIENVENIDO</h3>
+        <nav class="text-center mb-4">
+          <router-link to="/plan_paciente" class="btn btn-link">Planes de alimentación</router-link>
+          |
+          <router-link to="/chat" class="btn btn-link">Mensajes</router-link>
+        </nav>
 
-      <div class="col-md-6 position-relative">
-        <img :src="randomImage.url" alt="Healthy Food" v-if="randomImage" class="img-fluid full-image" />
-        <p v-else>No se ha cargado ninguna imagen aún.</p>
+        <div class="col-md-6 position-relative">
+          <img :src="randomImage.url" alt="Healthy Food" v-if="randomImage" class="img-fluid w-100" />
+          <p v-else class="text-center">No se ha cargado ninguna imagen aún.</p>
+        </div>
+
+        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+          <p v-if="randomPhrase" class="text-center">"{{ randomPhrase.text }}"</p>
+          <small v-if="randomPhrase" class="text-muted text-center">— {{ randomPhrase.author }}</small>
+          <p v-else class="text-center">No se ha generado ninguna frase aún.</p>
+        </div>
       </div>
-      <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
 
-        <p v-if="randomPhrase">"{{ randomPhrase.text }}"</p>
-        <small v-if="randomPhrase">— {{ randomPhrase.author }}</small>
-        <p v-else>No se ha generado ninguna frase aún.</p>
-      </div>
-    </div>
-    <br>
-    <div class="container mt-5">
-      <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
+      <br />
 
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <!-- Pregunta 1 -->
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">¿Cuántas comidas al día debo hacer?</h5>
-              <p class="card-text">
-                La cantidad de comidas al día puede variar según las necesidades individuales, pero generalmente se
-                recomienda hacer de 3 a 5 comidas al día. Esto puede incluir tres comidas principales (desayuno, comida
-                y cena) y dos colaciones saludables entre comidas.
-              </p>
+      <div class="container mt-5">
+        <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
+
+        <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
+          <!-- Pregunta 1 -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">¿Cuántas comidas al día debo hacer?</h5>
+                <p class="card-text">
+                  La cantidad de comidas al día puede variar según las necesidades individuales, pero generalmente se
+                  recomienda hacer de 3 a 5 comidas al día. Esto puede incluir tres comidas principales (desayuno, comida
+                  y cena) y dos colaciones saludables entre comidas.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Pregunta 2 -->
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">¿Qué debo comer para mantener una dieta balanceada?</h5>
-              <p class="card-text">
-                Una dieta balanceada incluye una variedad de alimentos de todos los grupos: frutas, verduras, proteínas
-                magras, granos integrales y lácteos bajos en grasa. Es importante comer porciones adecuadas y limitar el
-                consumo de alimentos procesados, azúcares añadidos y grasas saturadas.
-              </p>
+          <!-- Pregunta 2 -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">¿Qué debo comer para mantener una dieta balanceada?</h5>
+                <p class="card-text">
+                  Una dieta balanceada incluye una variedad de alimentos de todos los grupos: frutas, verduras, proteínas
+                  magras, granos integrales y lácteos bajos en grasa. Es importante comer porciones adecuadas y limitar el
+                  consumo de alimentos procesados, azúcares añadidos y grasas saturadas.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Pregunta 3 -->
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">¿Qué alimentos son buenos para aumentar mi energía?</h5>
-              <p class="card-text">
-                Los alimentos ricos en carbohidratos complejos, como granos integrales, frutas y verduras, son
-                excelentes para aumentar la energía.
-              </p>
+          <!-- Pregunta 3 -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">¿Qué alimentos son buenos para aumentar mi energía?</h5>
+                <p class="card-text">
+                  Los alimentos ricos en carbohidratos complejos, como granos integrales, frutas y verduras, son
+                  excelentes para aumentar la energía.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Pregunta 4 -->
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">¿Si bajo de peso solo bajo grasa?</h5>
-              <p class="card-text">
-                Cuando se baja de peso, depende mucho de la dieta o los factores por los que sea provocada esa pérdida
-                de peso, porque se puede perder grasa pero al mismo tiempo masa muscular cuando el proceso no se lleva
-                con una dieta balanceada.
-              </p>
+          <!-- Pregunta 4 -->
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">¿Si bajo de peso solo bajo grasa?</h5>
+                <p class="card-text">
+                  Cuando se baja de peso, depende mucho de la dieta o los factores por los que sea provocada esa pérdida
+                  de peso, porque se puede perder grasa pero al mismo tiempo masa muscular cuando el proceso no se lleva
+                  con una dieta balanceada.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -136,3 +141,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.h-80 {
+  height: 80vh;
+}
+.overflow-hidden {
+  overflow-x: hidden;
+}
+</style>
