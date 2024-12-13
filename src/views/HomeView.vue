@@ -1,5 +1,5 @@
 <template>
-  <div class="h-80 overflow-hidden">
+  <div class="overflow-hidden">
     <div class="container">
       <div class="row align-items-stretch h-80">
         <h3 class="text-center mb-4">BIENVENIDO</h3>
@@ -7,6 +7,10 @@
           <router-link to="/plan_paciente" class="btn btn-link">Planes de alimentación</router-link>
           |
           <router-link to="/chat" class="btn btn-link">Mensajes</router-link>
+          |
+          <router-link to="#preguntasFrecuentes" class="btn btn-link">Preguntas Frecuentes</router-link>
+          |
+          <router-link to="#videos" class="btn btn-link">Videos de apoyo</router-link>
         </nav>
 
         <div class="col-md-6 position-relative">
@@ -23,9 +27,8 @@
 
       <br />
 
-      <div class="container mt-5">
+      <div id="preguntasFrecuentes" class="container mt-3 vh-100">
         <h2 class="text-center mb-4">Preguntas Frecuentes</h2>
-
         <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
           <!-- Pregunta 1 -->
           <div class="col">
@@ -34,7 +37,8 @@
                 <h5 class="card-title">¿Cuántas comidas al día debo hacer?</h5>
                 <p class="card-text">
                   La cantidad de comidas al día puede variar según las necesidades individuales, pero generalmente se
-                  recomienda hacer de 3 a 5 comidas al día. Esto puede incluir tres comidas principales (desayuno, comida
+                  recomienda hacer de 3 a 5 comidas al día. Esto puede incluir tres comidas principales (desayuno,
+                  comida
                   y cena) y dos colaciones saludables entre comidas.
                 </p>
               </div>
@@ -47,8 +51,10 @@
               <div class="card-body">
                 <h5 class="card-title">¿Qué debo comer para mantener una dieta balanceada?</h5>
                 <p class="card-text">
-                  Una dieta balanceada incluye una variedad de alimentos de todos los grupos: frutas, verduras, proteínas
-                  magras, granos integrales y lácteos bajos en grasa. Es importante comer porciones adecuadas y limitar el
+                  Una dieta balanceada incluye una variedad de alimentos de todos los grupos: frutas, verduras,
+                  proteínas
+                  magras, granos integrales y lácteos bajos en grasa. Es importante comer porciones adecuadas y limitar
+                  el
                   consumo de alimentos procesados, azúcares añadidos y grasas saturadas.
                 </p>
               </div>
@@ -79,6 +85,29 @@
                   con una dieta balanceada.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="videos" class="container mt-3 mb-3 vh-100">
+      <h2 class="text-center mb-4">Videos de apoyo</h2>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <!-- Itera sobre los videos para mostrarlos -->
+        <div class="col" v-for="video in videos" :key="video.id">
+          <div class="card h-100">
+            <!-- Video de YouTube -->
+            <div class="ratio ratio-16x9">
+              <iframe :src="'https://www.youtube.com/embed/' + video.youtubeId" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <!-- Créditos del autor -->
+            <div class="card-body">
+              <h5 class="card-title">{{ video.title }}</h5>
+              <p class="card-text">
+                Video de: <a :href="video.authorUrl" target="_blank">{{ video.author }}</a>
+              </p>
             </div>
           </div>
         </div>
@@ -122,6 +151,22 @@ export default {
         { url: "./platillo7.png" },
       ],
       randomImage: null,
+      videos: [
+        {
+          id: 1,
+          youtubeId: "vs2U6BvZ4U4",
+          title: "Alimentación sana - cerebro sano",
+          author: "INCMNSZ - Educación para la Salud",
+          authorUrl: "https://www.youtube.com/@EpsnutricionMx",
+        },
+        {
+          id: 2,
+          youtubeId: "z9Hh7KxyUlg", 
+          title: "¿Cómo iniciar cambios en su alimentación?",
+          author: "INCMNSZ - Educación para la Salud",
+          authorUrl: "https://www.youtube.com/@EpsnutricionMx",
+        },
+      ],
     }
   },
   methods: {
@@ -143,9 +188,6 @@ export default {
 </script>
 
 <style>
-.h-80 {
-  height: 80vh;
-}
 .overflow-hidden {
   overflow-x: hidden;
 }

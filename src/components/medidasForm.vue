@@ -40,7 +40,7 @@
 <script>
 import api from '../axios.js';
 import { useRouter } from 'vue-router';
-import { useIdStore } from '@/stores/idStore';
+import { useMedidasStore } from '@/stores/medidasStore.js';
 import { reactive } from 'vue';
 import Swal from 'sweetalert2';
 
@@ -50,7 +50,7 @@ export default {
     },
     setup() {
         const router = useRouter();
-        const idPaciente = useIdStore();
+        const medidas = useMedidasStore();
 
         const medida = reactive({
             estatura: '',
@@ -59,14 +59,14 @@ export default {
             m_peso: '',
             m_brazo: '',
             fecha: '',
-            id_paciente: idPaciente.idPaciente
+            id_paciente: medidas.paciente.id_paciente,
         });
 
         const saveMedidas = async () => {
             try {
                 // Asignar la fecha actual automáticamente
                 medida.fecha = new Date().toISOString();  // Convertir a formato ISO
-                const data = await api.post(`/medida/register/${idPaciente.idPaciente}`, medida);
+                const data = await api.post(`/medida/register/${medida.id_paciente}`, medida);
                 Swal.fire('¡Registrado!', 'La medida se ha sido registrado con éxito.', 'success');
                 router.push({ name: 'crud' });
             } catch (error) {

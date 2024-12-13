@@ -85,6 +85,18 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      const element = document.querySelector(to.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 router.beforeEach(async (to, from, next) => {

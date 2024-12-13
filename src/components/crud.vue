@@ -126,18 +126,16 @@ export default {
     };
 
     const editarPaciente = async (id_paciente) => {
-      // Redirigir a la vista de edición del paciente
       try {
         const response = await api.get(`/crud/paciente/${id_paciente}`);
         const data = response.data;
-
         pacienteStore.setId_paciente(data.id_paciente);
         pacienteStore.setNombre(data.nombre);
         pacienteStore.setApellido(data.apellido);
         pacienteStore.setNacimiento(data.f_nacimiento);
         pacienteStore.setUsuario(data.usuario);
         pacienteStore.setPassword(data.password);
-
+        pacienteStore.setGenero(data.genero);
         console.log(response);
         router.push({ name: 'edit' });
       } catch (error) {
@@ -149,8 +147,13 @@ export default {
       try {
         const response = await api.get(`/crud/medidas/${id_paciente}`);
         medidasStore.setMedidas(response.data);
-        idStore.setId(id_paciente);
-        console.log(response);
+        const responsePaciente = await api.get(`/crud/paciente/${id_paciente}`);
+        const data = responsePaciente.data;
+        pacienteStore.setId_paciente(data.id_paciente);
+        pacienteStore.setNombre(data.nombre);
+        pacienteStore.setApellido(data.apellido);
+        pacienteStore.setGenero(data.genero);
+        pacienteStore.setEdad(data.edad);
         router.push({ name: 'MedidasView' });
       } catch (error) {
         console.log("Error en medidasPaciente ", error);
@@ -162,7 +165,6 @@ export default {
         const response = await api.get(`/crud/planes/${id_paciente}`);
         idStore.setId(id_paciente);
         planesStore.setPlanes(response.data);
-        console.log(response);
         router.push({ name: 'PlanView' });
       } catch (error) {
         console.log("Error en planesPaciente", error);
@@ -186,7 +188,6 @@ export default {
         });
         if (result.isConfirmed) {
           const response = await api.delete(`paciente/delete/${id_paciente}`);
-          console.log(response.data);
           Swal.fire('¡Eliminado!', 'El paciente ha sido eliminado con éxito.', 'success');
         }
       } catch (error) {
@@ -197,7 +198,6 @@ export default {
 
     const mensajePaciente = (id_paciente) => {
       idStore.setId(id_paciente);
-      console.log(idStore.idPaciente);
       router.push({ name: 'ChatView' });
     }
 
