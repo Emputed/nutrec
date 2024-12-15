@@ -35,7 +35,7 @@
         </table>
         <button class="btn btn-success" @click="nuevaMedida()">Nueva medida</button>
   
-        <div id="graficas" class="mt-5">
+        <div id="graficas" class="mt-5 container">
           <div class="row">
             <!-- Gráfica del IMC -->
             <div class="col-md-6">

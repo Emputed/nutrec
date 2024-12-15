@@ -41,6 +41,7 @@
 import api from '../axios.js';
 import { useRouter } from 'vue-router';
 import { useMedidasStore } from '@/stores/medidasStore.js';
+import { usePacienteStore } from '@/stores/pacienteStore.js';
 import { reactive } from 'vue';
 import Swal from 'sweetalert2';
 
@@ -51,6 +52,7 @@ export default {
     setup() {
         const router = useRouter();
         const medidas = useMedidasStore();
+        const paciente = usePacienteStore();
 
         const medida = reactive({
             estatura: '',
@@ -59,7 +61,7 @@ export default {
             m_peso: '',
             m_brazo: '',
             fecha: '',
-            id_paciente: medidas.paciente.id_paciente,
+            id_paciente: paciente.id_paciente,
         });
 
         const saveMedidas = async () => {
