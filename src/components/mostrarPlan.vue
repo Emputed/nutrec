@@ -25,10 +25,12 @@
 import { usePlanesStore } from '@/stores/planesStore';
 import api from '../axios.js'
 import Swal from 'sweetalert2';
+import { useRouter } from 'vue-router';
 export default {
     name: 'mostrarPlan',
     setup() {
         const planesStore = usePlanesStore();
+        const router = useRouter();
 
         const eliminarPlan = async (id_plan) => {
             try {
@@ -49,6 +51,7 @@ export default {
                     const response = await api.delete(`plan/delete/${id_plan}`);
                     console.log(response.data);
                     Swal.fire('¡Eliminado!', 'El archivo ha sido eliminado con éxito.', 'success');
+                    router.push({name:'crud'});
                 }
             } catch (error) {
                 console.log(error);

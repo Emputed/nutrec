@@ -6,7 +6,6 @@
       </h5>
     </div>
 
-
     <div class="chat-body flex-grow-1 p-3 overflow-auto bg-light vh-100">
       <div v-for="(message, index) in messages" :key="index" class="mb-3">
         <div :class="{
@@ -20,7 +19,7 @@
             {{ message.message }}
           </div>
           <small class="d-block text-muted mt-1">
-            {{ new Date(message.timestamp).toLocaleTimeString() }}
+            {{ new Date(message.timestamp || Date.now()).toLocaleTimeString() }}
           </small>
         </div>
       </div>

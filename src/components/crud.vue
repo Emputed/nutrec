@@ -1,70 +1,71 @@
 <template>
-  <h3 class="m-3">PANEL DE CONTROL</h3>
-  <!-- Buscador -->
-  <div class="container mb-3">
-    <input v-model="searchQuery" type="text" class="form-control" placeholder="Buscar por nombre..." />
+  <div class="vh-100">
+    <h3 class="m-3">PANEL DE CONTROL</h3>
+    <!-- Buscador -->
+    <div class="container mb-3">
+      <input v-model="searchQuery" type="text" class="form-control" placeholder="Buscar por nombre..." />
+    </div>
+    <!-- Tabla -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="paciente in paginatedPacientes" :key="paciente.id_paciente">
+          <th scope="row">{{ paciente.id_paciente }}</th>
+          <td>{{ paciente.nombre }}</td>
+          <td>{{ paciente.apellido }}</td>
+          <td>{{ paciente.edad }}</td>
+          <td>
+            <button type="button" class="btn btn-success" @click="editarPaciente(paciente.id_paciente)">
+              Editar
+            </button>
+            <button type="button" class="btn btn-success" @click="medidasPaciente(paciente.id_paciente)">
+              Medidas
+            </button>
+            <button type="button" class="btn btn-success" @click="planesPaciente(paciente.id_paciente)">
+              Subir plan
+            </button>
+            <button type="button" class="btn btn-warning" @click="mensajePaciente(paciente.id_paciente)">
+              Chat
+            </button>
+            <button type="button" class="btn btn-danger" @click="eliminarPaciente(paciente.id_paciente)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Paginación -->
+    <nav aria-label="Paginación">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" :class="{ disabled: currentPage === 1 }">
+          <button class="page-link" @click="changePage(currentPage - 1)">
+            Anterior
+          </button>
+        </li>
+        <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
+          <button class="page-link" @click="changePage(page)">{{ page }}</button>
+        </li>
+        <li :class="{ disabled: currentPage === totalPages }">
+          <button class="page-link" @click="changePage(currentPage + 1)">
+            Siguiente
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <button type="button" class="btn btn-success mb-3" @click="registrarPaciente">
+      Registrar paciente
+    </button>
   </div>
-  <!-- Tabla -->
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Edad</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="paciente in paginatedPacientes" :key="paciente.id_paciente">
-        <th scope="row">{{ paciente.id_paciente }}</th>
-        <td>{{ paciente.nombre }}</td>
-        <td>{{ paciente.apellido }}</td>
-        <td>{{ paciente.edad }}</td>
-        <td>
-          <button type="button" class="btn btn-success" @click="editarPaciente(paciente.id_paciente)">
-            Editar
-          </button>
-          <button type="button" class="btn btn-success" @click="medidasPaciente(paciente.id_paciente)">
-            Medidas
-          </button>
-          <button type="button" class="btn btn-success" @click="planesPaciente(paciente.id_paciente)">
-            Subir plan
-          </button>
-          <button type="button" class="btn btn-warning" @click="mensajePaciente(paciente.id_paciente)">
-            Chat
-          </button>
-          <button type="button" class="btn btn-danger" @click="eliminarPaciente(paciente.id_paciente)">
-            Eliminar
-          </button>
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- Paginación -->
-  <nav aria-label="Paginación">
-    <ul class="pagination justify-content-center">
-      <li class="page-item" :class="{ disabled: currentPage === 1 }">
-        <button class="page-link" @click="changePage(currentPage - 1)">
-          Anterior
-        </button>
-      </li>
-      <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
-        <button class="page-link" @click="changePage(page)">{{ page }}</button>
-      </li>
-      <li :class="{ disabled: currentPage === totalPages }">
-        <button class="page-link" @click="changePage(currentPage + 1)">
-          Siguiente
-        </button>
-      </li>
-    </ul>
-  </nav>
-
-  <button type="button" class="btn btn-success mb-3" @click="registrarPaciente">
-    Registrar paciente
-  </button>
 </template>
 
 
