@@ -29,7 +29,7 @@ export default {
         return {
             consultorioEcatepec: {
                 clinicName: "Consultorio de Nutrición Nutrec ECATEPEC",
-                clinicAddress: "Av. Mexico 222",
+                clinicAddress: "Av. México 222",
                 clinicCity: "Tulpetlac, Ecatepec de Morelos"
             },
             consultorioGAM: {

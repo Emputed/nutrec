@@ -6,10 +6,11 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: localStorage.getItem('token') || null,
     username: localStorage.getItem('username') || null, 
-    status : parseInt(localStorage.getItem('status')) || null,
-    id : localStorage.getItem('id') || null,
-    flag: localStorage.getItem('flag') === "true" ? true : false,
+    status: parseInt(localStorage.getItem('status')) || null,
+    id: localStorage.getItem('id') || null,
+    flag: localStorage.getItem('flag') === "true",
     role: localStorage.getItem('role') || null,
+    acceptedTerms: localStorage.getItem('acceptedTerms') === "true", // Nueva propiedad
   }),
   actions: {
     async login(credentials) {
@@ -31,6 +32,10 @@ export const useAuthStore = defineStore('auth', {
         throw error;
       }
     },
+    setAcceptedTerms(accepted) {
+      this.acceptedTerms = accepted;
+      localStorage.setItem('acceptedTerms', accepted);
+    },
     setToken(token) {
       this.token = token;
       localStorage.setItem('token', token);
@@ -39,19 +44,19 @@ export const useAuthStore = defineStore('auth', {
       this.username = username;
       localStorage.setItem('username', username);  
     },
-    setStatus(status){
+    setStatus(status) {
       this.status = status;
       localStorage.setItem('status', status);
     },
-    setId(id){
+    setId(id) {
       this.id = id;
       localStorage.setItem('id', id);
     },
-    setFlag(flag){
+    setFlag(flag) {
       this.flag = flag;
       localStorage.setItem('flag', flag);
     },
-    setRole(role){
+    setRole(role) {
       this.role = role;
       localStorage.setItem('role', role);
     },
@@ -60,11 +65,13 @@ export const useAuthStore = defineStore('auth', {
       this.token = null;
       this.username = null;  
       this.flag = null;
+      this.acceptedTerms = false; // Reset acceptedTerms on logout
       localStorage.removeItem('id');
       localStorage.removeItem('token');
       localStorage.removeItem('username');
       localStorage.removeItem('flag');
       localStorage.removeItem('role');
+      localStorage.removeItem('acceptedTerms');
     },
   },
 });

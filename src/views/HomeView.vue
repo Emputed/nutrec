@@ -2,15 +2,14 @@
   <div class="overflow-hidden">
     <div class="container">
       <div class="row align-items-stretch h-80">
-        <h3 class="text-center mb-4">BIENVENIDO</h3>
-        <nav class="text-center mb-4">
-          <router-link to="/plan_paciente" class="btn btn-link">Planes de alimentación</router-link>
-          |
-          <router-link to="/chat" class="btn btn-link">Mensajes</router-link>
-          |
-          <router-link to="#preguntasFrecuentes" class="btn btn-link">Preguntas Frecuentes</router-link>
-          |
-          <router-link to="#videos" class="btn btn-link">Videos de apoyo</router-link>
+        <h3 class="text-center mt-3">BIENVENIDO</h3>
+        <nav class="text-center mb-4 d-flex flex-wrap justify-content-center gap-2">
+          <router-link to="/plan_paciente" class="btn btn-success rounded-pill px-4">Planes de
+            alimentación</router-link>
+          <router-link to="/chat" class="btn btn-success rounded-pill px-4">Mensajes</router-link>
+          <button class="btn btn-success rounded-pill px-4" @click="scrollToSection('preguntasFrecuentes')">Preguntas
+            Frecuentes</button>
+          <button class="btn btn-success rounded-pill px-4" @click="scrollToSection('videos')">Videos de apoyo</button>
         </nav>
 
         <div class="col-md-6 position-relative">
@@ -161,7 +160,7 @@ export default {
         },
         {
           id: 2,
-          youtubeId: "z9Hh7KxyUlg", 
+          youtubeId: "z9Hh7KxyUlg",
           title: "¿Cómo iniciar cambios en su alimentación?",
           author: "INCMNSZ - Educación para la Salud",
           authorUrl: "https://www.youtube.com/@EpsnutricionMx",
@@ -178,16 +177,38 @@ export default {
     generateRandomImage() {
       const randomIndex = Math.floor(Math.random() * this.images.length);
       this.randomImage = this.images[randomIndex];
+    },
+
+    scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   },
   mounted() {
     this.generateRandomImage();
     this.generateRandomPhrase();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 </script>
 
 <style>
+nav .btn {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Agrega sombra ligera */
+  transition: transform 0.2s, box-shadow 0.2s;
+  /* Animación al pasar el mouse */
+}
+
+nav .btn:hover {
+  transform: translateY(-2px);
+  /* Mueve el botón hacia arriba al pasar el mouse */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  /* Incrementa la sombra */
+}
+
 .overflow-hidden {
   overflow-x: hidden;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="chat-container d-flex flex-column justify-content-between h-100 ">
-    <div class="chat-header bg-primary text-white py-2 px-3">
+    <div class="chat-header bg-success text-white py-2 px-3 d-flex justify-content-between align-items-center">
       <h5 class="mb-0">
         Chat con {{ paciente?.nombre || "Mtra. Sara Marín - NUTREC" }}
       </h5>
@@ -43,14 +43,16 @@
 import { useAuthStore } from "@/stores/auth.js"; // Asegúrate de usar el nombre correcto
 import { useIdStore } from "@/stores/idStore.js";
 import { io } from "socket.io-client";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import api from "../axios.js";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "ChatView",
   setup() {
     const authStore = useAuthStore();
     const idStore = useIdStore();
+    const toast = useToast();
     let user = ref([]);
     console.log(user);
     const socket = io("https://express-nutrec.onrender.com");
@@ -59,6 +61,7 @@ export default {
     const paciente = ref({});
     user = {
       id: authStore.id,
+      username: authStore.username,
       role: authStore.role,
       status: authStore.status,
     };
@@ -99,6 +102,7 @@ export default {
 
       const messageData = {
         sender: user.id, // ID del usuario autenticado
+        senderName: user.username,
         receiver: getReceiver(),
         role: user.role,
         message: newMessage.value,
@@ -113,32 +117,58 @@ export default {
         console.error("Error al guardar el mensaje:", err);
       });
 
-     /* // Añadir el mensaje localmente
-      messages.value.push({
-        ...messageData,
-        timestamp: new Date().toISOString(),
-      }); */
+      /* // Añadir el mensaje localmente
+       messages.value.push({
+         ...messageData,
+         timestamp: new Date().toISOString(),
+       }); */
 
       newMessage.value = "";
     };
 
     // Escuchar nuevos mensajes del servidor
-    socket.on("receiveMessage", (data) => {
-      const room = getRoom();
-      if (data.room === room) {
-        messages.value.push(data);
+    onMounted(async () => {
+      try {
+        fetchPaciente();
+        fetchMessages();
+        socket.off("receiveMessage");
+        socket.on("receiveMessage", (data) => {
+          const room = getRoom();
+          if (data.room === room) {
+            messages.value.push(data);
+            //Notificacion
+            if (data.sender !== user.id) {
+              toast(`${data.senderName || "Usuario"}: ${data.message}`, {
+                timeout: 3000,
+                position: "bottom-right",
+                icon: "📩",
+              });
+            }
+          }
+        });
+        if (user.role === "nutriologa") {
+          const response = await api.get(`/messages/rooms/${user.role}`);
+          const rooms = response.data.rooms; // Ejemplo: ["nutriologa-1", "nutriologa-2"]
+
+          rooms.forEach((room) => {
+            console.log(`Uniéndose a la sala: ${room}`); // Log para verificar
+            socket.emit("joinRoom", room); // Unir a cada sala
+          });
+        } else {
+          const room = getRoom();
+          socket.emit("joinRoom", room);
+          //console.error("Acceso denegado: Solo la nutrióloga puede acceder a todas las salas.");
+        }
+      } catch (error) {
+        console.error("Error al unirse a las salas activas:", error);
       }
     });
 
-    onMounted(() => {
-      fetchPaciente();
-      fetchMessages();
-
-      const room = getRoom();
-      socket.emit("joinRoom", room);
+    onUnmounted(() => {
+      socket.off("receiveMessage");
     });
 
-    return { messages, newMessage, sendMessage, paciente, user };
+    return { messages, newMessage, sendMessage, paciente, user, toast };
   },
 };
 </script>
