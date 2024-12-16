@@ -100,7 +100,7 @@ export default {
       if (!newMessage.value) return;
 
       const messageData = {
-        sender: user.id, // ID del usuario autenticado
+        sender: user.id,
         senderName: user.username,
         receiver: getReceiver(),
         role: user.role,
@@ -115,29 +115,30 @@ export default {
       api.post("/messages/save", messageData).catch((err) => {
         console.error("Error al guardar el mensaje:", err);
       });
-
-      /* // Añadir el mensaje localmente
-       messages.value.push({
-         ...messageData,
-         timestamp: new Date().toISOString(),
-       }); */
-
       newMessage.value = "";
     };
 
     // Escuchar nuevos mensajes del servidor
     onMounted(async () => {
       try {
-        fetchPaciente();
-        fetchMessages();
+        await fetchPaciente();
+        await fetchMessages();
+
+        // Limpia cualquier oyente previo del evento
         socket.off("receiveMessage");
+
+        // Registra un único oyente global
         socket.on("receiveMessage", (data) => {
-          const room = getRoom();
-          if (data.room === room) {
+          console.log("Mensaje recibido:", data);
+
+          const activeRoom = getRoom(); // Obtiene la sala activa
+          if (data.room === activeRoom) {
+            // Si el mensaje pertenece a la sala activa, lo mostramos
             messages.value.push(data);
-            //Notificacion
+          } else {
+            // Notificación para mensajes de otras salas
             if (data.sender !== user.id) {
-              toast(`${data.senderName || "Usuario"}: ${data.message}`, {
+              toast(`Mensaje de ${data.senderName || "Usuario"}: ${data.message}`, {
                 timeout: 3000,
                 position: "bottom-right",
                 icon: "📩",
@@ -145,23 +146,27 @@ export default {
             }
           }
         });
+
+        // Unirse a las salas según el rol del usuario
         if (user.role === "nutriologa") {
           const response = await api.get(`/messages/rooms/${user.role}`);
-          const rooms = response.data.rooms; // Ejemplo: ["nutriologa-1", "nutriologa-2"]
+          const rooms = response.data.rooms;
 
+          // Únete a todas las salas necesarias
           rooms.forEach((room) => {
-            console.log(`Uniéndose a la sala: ${room}`); // Log para verificar
-            socket.emit("joinRoom", room); // Unir a cada sala
+            console.log(`Uniéndose a la sala: ${room}`);
+            socket.emit("joinRoom", room);
           });
         } else {
           const room = getRoom();
+          console.log(`Paciente uniéndose a la sala: ${room}`);
           socket.emit("joinRoom", room);
-          //console.error("Acceso denegado: Solo la nutrióloga puede acceder a todas las salas.");
         }
       } catch (error) {
         console.error("Error al unirse a las salas activas:", error);
       }
     });
+
 
     onUnmounted(() => {
       socket.off("receiveMessage");
